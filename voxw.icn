@@ -1,0 +1,1312 @@
+
+#fg3d 2017 FratisGraphics
+
+#Program to utilize Unicons 3D capabilities.
+
+#Some of this code is from the University of Arizona and Rosetta Code. Please contact me if you would like specifics of this.
+#shawnfratis@gmail.com
+
+#Integrated with Jafar Al-Gharaibeh's Unicon 3D viewer.
+
+#Made in Unicon, with Unicon IDE
+#unicon.sourceforge.net
+
+########################################################
+
+link wopen
+link color
+link graphics
+link numbers
+link options
+link button 
+link strings
+link colrlist
+link interact
+link random
+link printf
+link io
+link lists
+
+#########################################################
+
+procedure inpglcube01(ipx,ipy,ipz,ips,rgb)
+
+Fg(rgb)
+DrawCube(ipx,ipy,ipz,ips)
+
+return()
+
+end
+
+##################################################
+
+procedure inpglsphere01(ipx,ipy,ipz,ips,rgb)
+
+Fg(rgb)
+DrawSphere(ipx,ipy,ipz,ips)
+
+return()
+
+end
+
+##################################################
+
+procedure inpglcylinder01(ipx,ipy,ipz,ips,ipq,ipa,rgb)
+
+Fg(rgb)
+DrawCylinder(ipx,ipy,ipz,ips,ipq,ipa)
+
+end
+
+##################################################
+
+procedure inpglplane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz,rgb)
+
+Fg(rgb)
+FillPolygon(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+
+end
+
+##############Begin OpenGL 3D TEX##############################
+############################################################
+
+procedure texcube01(ipx,ipy,ipz,ips)
+
+WAttrib("texmode=on")
+
+WAttrib("texture=check.png")#change as needed
+
+DrawCube(ipx,ipy,ipz,ips)
+
+WAttrib("texmode=off") 
+
+end
+
+##################################################
+
+procedure texcylinder01(ipx,ipy,ipz,ips,ipq,ipa)
+
+WAttrib("texmode=on")
+
+WAttrib("texture=check.png")#change as needed
+
+DrawCylinder(ipx,ipy,ipz,ips,ipq,ipa)
+
+WAttrib("texmode=off") 
+
+end
+
+##################################################
+
+procedure texplane01(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+
+WAttrib("texmode=on")
+
+WAttrib("texture=check.png","texcoord 0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")#change as needed
+
+FillPolygon(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz)
+
+end
+
+##################################################
+#1st tex preset group
+##################################################
+
+procedure texskysphere02()
+
+WAttrib("texmode=on")
+
+WAttrib ("texture=sphere2.png")#change as needed
+
+x := -1
+y := 0
+z := -5
+r := 250
+
+DrawSphere(x,y,z,r)
+
+WAttrib("texmode=off") 
+
+end
+
+###################################################
+
+procedure texskysphere01()
+
+WAttrib("texmode=on")
+
+WAttrib ("texture=sphere1.png")#change as needed
+
+x := -1
+y := 0
+z := -5
+r := 250
+
+DrawSphere(x,y,z,r)
+
+WAttrib("texmode=off") 
+
+end
+
+##################################################
+
+procedure texgroundplane01()
+
+texskysphere01()
+
+WAttrib("texmode=on")
+
+WAttrib("texture=splane.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")#change as needed
+
+FillPolygon(-129,-.5,-249,129,-.5,-249,129,-.5,100,-129,-.5,100)
+
+WAttrib("texmode=off") 
+
+end
+
+##################################################
+
+procedure texgridplane01()
+
+#texskysphere01()
+
+WAttrib("texmode=on")
+
+WAttrib("texture=splane.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")#change as needed
+
+FillPolygon(-129,-.5,-249,129,-.5,-249,129,-.5,100,-129,-.5,100)
+
+WAttrib("texmode=off") 
+
+end
+
+##################################################
+
+procedure texskyplane01()
+
+WAttrib("texmode=on")
+
+WAttrib("texture=splane.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")#change as needed
+
+FillPolygon(-129,8,-249,129,8,-249,129,8,100,-129,8,100)
+
+WAttrib("texmode=off") 
+
+end
+
+##################################################
+#2nd tex plane group
+##################################################
+
+procedure texskysphere05()
+
+WAttrib("texmode=on")
+
+WAttrib ("texture=sphere3.png")#change as needed
+
+x := -1
+y := 0
+z := -5
+r := 250
+
+DrawSphere(x,y,z,r)
+
+WAttrib("texmode=off") 
+
+end
+
+##################################################
+
+procedure texgroundplane05()
+
+texskysphere01()
+
+WAttrib("texmode=on")
+
+WAttrib("texture=gplane2.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")#change as needed
+
+FillPolygon(-129,-.5,-249,129,-.5,-249,129,-.5,100,-129,-.5,100)
+
+WAttrib("texmode=off") 
+
+end
+
+##################################################
+
+procedure texskyplane05()
+
+WAttrib("texmode=on")
+
+WAttrib("texture=splane2.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")#change as needed
+
+FillPolygon(-129,8,-249,129,8,-249,129,8,100,-129,8,100)
+
+WAttrib("texmode=off") 
+
+end
+
+##########################################################
+
+procedure scene02(x,y,z,s)
+
+v:=[0,0.5,1,1.5,2,2.5,3,3.5,4]
+
+vv:=[?0,?0.5,?1,?1.5,?2,?2.5,?3,?3.5,?4]
+
+Fg("blue")
+every x := !v do
+every z := !v do
+every y := !vv do
+
+DrawCube(x,y,z,s)
+
+end
+
+#######################################################
+
+procedure scene03(x,xx,z,zz)
+
+Fg("blue")
+
+va:=[[0,0.5,1,1.5,2,2.5,3,3.5,4],[0,0.5,1,1.5,2,2.5,3,3.5,4]]
+
+every x := !va[1] do
+every z := !va[1] do
+
+every xx := !va[2] do
+every zz := !va[2] do
+
+DrawCube(x,0,z,.1)
+DrawCube(xx,.5,zz,.1)
+
+end
+
+#######################################################
+
+procedure scene04()
+
+voxBase(0,.1,0,0.5,1,1.5,2,-2,.5)
+voxBase(1,.1,0,0.5,1,1.5,2,-3,.5)
+voxBase(1,.1,0,0.5,1,1.5,2,-4,.5)
+voxBase(1,.1,0,0.5,1,1.5,2,-5,.5)
+voxBase(1,.1,0,0.5,1,1.5,2,-6,.5)
+voxBase(1,.1,0,0.5,1,1.5,2,-7,.5)
+
+end
+
+#######################################################
+
+procedure voxBase(yy,ss,x1,x2,x3,x4,x5,x6)
+
+v:=[x1,x2,x3,x4,x5,x6]
+
+every x := !v do
+every z := !v do
+
+y := yy 
+s := ss
+
+Fg("blue")
+
+DrawCube(x,y,z,s)
+
+end
+
+#######################################################
+
+procedure scene05()
+
+scene06(18,1,0,1)
+scene06(18,1,1,1)
+scene06(18,1,2,1)
+scene06(18,1,3,1)
+scene06(14,1,4,1)
+scene06(13,1,5,1)
+
+end
+
+#######################################################
+
+procedure scene06(x,zq,y,sq,wq,oq)
+
+Fg("green")
+
+width := wq #80
+offset := oq #5
+
+every y := 0 to width - 1 do
+every x := 0 to width - 1 do
+        
+if iand(x, y) = 0 then DrawCube(x * offset, zq,y * offset,sq)
+
+end
+
+##########################################################
+
+procedure scene07(x,y,z)
+
+v:=[0,0.5,1,1.5,2,2.5,3,1]
+
+vv:=[1,2,3,4,5,6,7,8]
+
+vvv := [2,4,6,8,0]
+
+   wsize := 25
+   cmax  := 90
+ 
+ every x := 0 to !v -1 do
+   every y  := 0 to !vv -1 do
+    every z  := 0 to !vvv -1 do {
+         #c := cmax/wsize * iand(wsize-1,ixor(x,y))
+         #Fg(sprintf("%d,%d,%d",c,cmax-c,0))
+Fg("65000,1,1")
+         DrawCube(x,?y,z,.5)
+
+}
+
+end
+
+#################################################################
+
+procedure scene08(x,y,xx,s)
+
+#x := 0
+#y := 0
+s := .1
+
+v:=[0,0.5,1,1.5,2,2.5,3,1]
+#v := [[1,2,3],[1,2,3]]
+
+vv:=[1,2,3,4]
+
+#every y := !v[1] do
+#every x := !v[2] do
+
+Fg("blue")
+every x := !v  do
+every y := !v do
+every xx := !vv do
+#every yy := !vvv do
+
+DrawCube(x,1,1,s)
+DrawCube(x,2,1,s)
+DrawCube(x,3,1,s)
+end
+
+#############################
+
+procedure scene09(x,y,w,h)
+
+colors:= ["red", "blue", "green","yellow", "purple", "white", "black"] 
+
+#Rect:=[FiIIRectangle, DrawRectangle] 
+#Rect := [DrawCube]
+
+#repeat{ w:=?Width h:=?Height x:=?Width-w/2 Y:=?Height-h/2
+
+w:=5
+h:= 3 
+x:=2-w/2 
+y:= 4-h/2 
+
+Fg(?colors) 
+DrawCube(x,y,w,h)
+
+end
+
+###############################################################
+
+procedure scene10()
+
+x1 := [1,4,5,7]
+x2 := [2,3,4,5]
+
+voxChunkBlock04(12,x1[1],13,x1[2],14,x1[3],15,x1[4],12,x2[1],13,x2[2],14,x2[3],15,x2[4])
+
+end
+
+################################################################
+
+procedure colorTable(cq)
+
+ct := ["red","green","blue","yellow","orange","magenta","gray","light gray","dark gray"]
+
+c := ct[cq]
+
+return(c)
+
+end
+
+##########################################################
+
+procedure cube01(at)
+
+(ax := at[1],bx := at[2],cx := at[3])
+(dx := at[4],ex := at[5],fx := at[6])
+(gx := at[7],hx := at[8],ix := at[9])
+(jx := at[10],jq := at[11])
+
+c := colorTable(jq)
+
+x := (ax||bx||cx) 
+y := (dx||ex||fx) 
+z := (gx||hx||ix) 
+s := jx
+
+inpglcube01(x,y,z,s,c)
+
+return()
+
+end
+
+##########################################################
+
+procedure sphere01(at)
+
+(ax := at[1],bx := at[2],cx := at[3])
+(dx := at[4],ex := at[5],fx := at[6])
+(gx := at[7],hx := at[8],ix := at[9])
+(jx := at[10],jq := at[11])
+
+c := colorTable(jq)
+
+x := (ax||bx||cx) 
+y := (dx||ex||fx) 
+z := (gx||hx||ix) 
+s := jx
+
+inpglsphere01(x,y,z,s,c)
+
+return()
+
+end
+
+##########################################################
+
+procedure cyl01(at)
+
+(ax := at[1],bx := at[2],cx := at[3])
+(dx := at[4],ex := at[5],fx := at[6])
+(gx := at[7],hx := at[8],ix := at[9])
+(jz := at[10],jx := at[11],jy := at[12])
+(jq := at[13])
+
+c := colorTable(jq)
+
+x := (ax||bx||cx) 
+y := (dx||ex||fx) 
+z := (gx||hx||ix)
+p1 := jz 
+s1 := jx
+s2 := jy
+
+inpglcylinder01(x,y,z,p1,s1,s2,c)
+
+return()
+
+end
+
+#############################################################
+
+procedure scene01(b)
+
+(ax := b[1],bx := b[2],cx := b[3])
+(dx := b[4],ex := b[5],fx := b[6])
+(gx := b[7],hx := b[8],ix := b[9])
+(ss := b[10],jq := b[11])
+
+cc := colorTable(jq)
+
+   (xc := 0,yc := 0)
+
+   i := (dx||ex||fx)   #15
+
+   size := (ax||bx||cx)  #was 10
+   radius := size / .8
+   xc := yc := size / .8
+
+   angle := 0.0
+   incr := (gx||hx||ix) * &pi / i
+
+   every j := 1 to i do {
+      spokes(xc + radius * cos(angle), yc + radius * sin(angle),
+      radius, i, angle,ss,cc)
+      angle +:= incr
+      }
+ 
+end
+
+procedure spokes(x, y, r, i, angle,s,c)
+   local incr, j
+
+   incr := 2 * &pi / i 
+  Fg(c)
+   every j := 1 to i do {
+DrawSphere(x + r * cos(angle),0,y + r * sin(angle), s)
+
+      angle +:= incr
+      }
+
+   return
+
+#radii..use x,y,r
+   
+end
+
+##################################################################
+
+procedure comlist01(at)
+
+(ax := at[1],bx := at[2],cx := at[3])
+(dx := at[4],ex := at[5],fx := at[6])
+(gx := at[7],hx := at[8],ix := at[9])
+(jq := at[10])
+
+c := colorTable(jq)
+
+every x := 1 to (ax||bx||cx) do{
+every y := 1 to (dx||ex||fx) do{
+every z := 1 to (gx||hx||ix) do{ 
+
+inpglcube01(?x,?y,?z,?.5,c)
+
+}
+}
+}
+
+return()
+
+end
+
+############################################################
+
+procedure comlist02(at)
+
+(ax := at[1],bx := at[2],cx := at[3])
+(dx := at[4],ex := at[5],fx := at[6])
+(gx := at[7],hx := at[8],ix := at[9])
+(jq := at[10])
+
+c := colorTable(jq)
+
+every x := 1 to (ax||bx||cx) do{
+every y := 1 to (dx||ex||fx) do{
+every z := 1 to (gx||hx||ix) do{ 
+
+inpglcube01(x,y,z,.5,c)
+
+}
+}
+}
+
+return()
+
+end
+
+#################################################################
+
+procedure comlist03(at)
+
+(ax := at[1],bx := at[2],cx := at[3])
+(dx := at[4],ex := at[5],fx := at[6])
+(gx := at[7],hx := at[8],ix := at[9])
+(jx := at[10],jq := at[11],jz := at[12])
+
+c := colorTable(jq)
+
+every xx := 1 to (ax||bx||cx) do{
+every y := 1 to (dx||ex||fx) do{
+every z := 1 to (gx||hx||ix) do{ 
+
+x := (1 * sin(jz * &pi) / xx)
+
+inpglcube01(x,y,z,jx,c)
+
+}
+}
+}
+
+return()
+
+end
+
+############################################################
+#############sphere arrays#########################
+
+procedure comlist04(at)
+
+(ax := at[1],bx := at[2],cx := at[3])
+(dx := at[4],ex := at[5],fx := at[6])
+(gx := at[7],hx := at[8],ix := at[9])
+(jq := at[10])
+
+c := colorTable(jq)
+
+every x := 1 to (ax||bx||cx) do{
+every y := 1 to (dx||ex||fx) do{
+every z := 1 to (gx||hx||ix) do{ 
+
+inpglsphere01(?x,?y,?z,?.5,c)
+
+}
+}
+}
+
+return()
+
+end
+
+############################################################
+
+procedure comlist05(at)
+
+(ax := at[1],bx := at[2],cx := at[3])
+(dx := at[4],ex := at[5],fx := at[6])
+(gx := at[7],hx := at[8],ix := at[9])
+(jq := at[10])
+
+c := colorTable(jq)
+
+every x := 1 to (ax||bx||cx) do{
+every y := 1 to (dx||ex||fx) do{
+every z := 1 to (gx||hx||ix) do{ 
+
+inpglsphere01(x,y,z,.5,c)
+
+}
+}
+}
+
+return()
+
+end
+
+##################################################################
+
+#begin mesh
+
+procedure tmod01(tt)
+
+(xdd := tt[1],zed := tt[2])
+
+(zq1 := -5+zed,zq2 := -4.5+zed, zq3 := -4+zed)
+
+v01 := (tt[3]||"."||tt[4])
+v02 := (tt[5]||"."||tt[6])
+v03 := (tt[7]||"."||tt[8])
+v04 := (tt[9]||"."||tt[10])
+v05 := (tt[11]||"."||tt[12])
+v06 := (tt[13]||"."||tt[14])
+v07 := (tt[15]||"."||tt[16])
+v08 := (tt[17]||"."||tt[18])
+v09 := (tt[19]||"."||tt[20])
+v10 := (tt[21]||"."||tt[22])
+v11 := (tt[23]||"."||tt[24])
+v12 := (tt[25]||"."||tt[26])
+v13 := (tt[27]||"."||tt[28])
+v14 := (tt[29]||"."||tt[30])
+v15 := (tt[31]||"."||tt[32])
+
+c1 := tt[33]
+c2 := tt[34]
+c3 := tt[35] 
+c4 := tt[36]
+
+duk := colorTable(c1)
+dad := colorTable(c2)
+daq := colorTable(c3)
+daz := colorTable(c4)
+
+######################################################
+
+(ya1 := -1+v01 ,ya2 := -1+v02,ya3 := -1+v03,ya4 := -1+v04,ya5 := -1+v05,ya6 := -1+v06,ya7 := -1+v07,ya8 := -1+v08,ya9 := -1+v09,yn1 := -1+v10,yn2 := -1+v11,yn3 := -1+v12,yn4 := -1+v13,yn5 := -1+v14,yn6 := -1+v15)
+
+######################################################
+
+(xa1 := 0+xdd,xa2 := .5+xdd,xa3 := 1+xdd,xa4 := 1.5+xdd,xa5 := 2+xdd,xa6 := 0+xdd,xa7 := .5+xdd,xa8 := 1+xdd,xa9 := 1.5+xdd,x10 := 2+xdd,x11 := 0+xdd,x12 := .5+xdd,x13 := 1+xdd,x14 := 1.5+xdd,x15 := 2+xdd)
+
+##############
+
+xq1 := xa1 
+xq2 := xa2  
+xq3 := xa3 
+ 
+xq4 := xa4  
+xq5 := xa5 
+xq6 := xa6 
+ 
+xq7 := xa7  
+xq8 := xa8  
+xq9 := xa9
+ 
+xm1 := x10  
+xm2 := x11 
+xm3 := x12 
+
+xm4 := x13 
+xm5 := x14  
+xm6 := x15
+
+##############################################
+
+yq1 := ya1 
+yq2 := ya2  
+yq3 := ya3 
+ 
+yq4 := ya4 
+yq5 := ya5 
+yq6 := ya6 
+ 
+yq7 := ya7 
+yq8 := ya8 
+yq9 := ya9 
+ 
+ym1 := yn1  
+ym2 := yn2
+ym3 := yn3 
+
+ym4 := yn4 
+ym5 := yn5  
+ym6 := yn6 
+
+######################################################
+
+Fg(duk)
+#1
+ FillPolygon(xq1,yq1,zq1,xq2,yq2,zq1,xq6,yq6,zq2)
+
+Fg(daq)
+#2  
+ FillPolygon(xq2,yq2,zq1,xq7,yq7,zq2,xq6,yq6,zq2)
+
+Fg(daz)
+#3  
+ FillPolygon(xq2,yq2,zq1,xq3,yq3,zq1,xq7,yq7,zq2)
+
+Fg(dad)
+#4  
+ FillPolygon(xq3,yq3,zq1,xq8,yq8,zq2,xq7,yq7,zq2)
+
+Fg(duk)
+#5
+ FillPolygon(xq3,yq3,zq1,xq4,yq4,zq1,xq8,yq8,zq2)
+
+Fg(daq)
+#6  
+ FillPolygon(xq4,yq4,zq1,xq9,yq9,zq2,xq8,yq8,zq2)
+
+Fg(daz)
+#7
+ FillPolygon(xq4,yq4,zq1,xq5,yq5,zq1,xq9,yq9,zq2)
+
+Fg(dad)
+#8  
+ FillPolygon(xq5,yq5,zq1,xm1,ym1,zq2,xq9,yq9,zq2)
+
+######################################################
+
+Fg(duk)
+#9  
+ FillPolygon(xq6,yq6,zq2,xq7,yq7,zq2,xm2,ym2,zq3)
+
+Fg(daq)
+#10  
+ FillPolygon(xq7,yq7,zq2,xm3,ym3,zq3,xm2,ym2,zq3)
+
+Fg(daz)
+#11
+ FillPolygon(xq7,yq7,zq2,xq8,yq8,zq2,xm3,ym3,zq3)
+
+Fg(dad)
+#12  
+ FillPolygon(xq8,yq8,zq2,xm4,ym4,zq3,xm3,ym3,zq3)
+
+Fg(duk)
+#13
+ FillPolygon(xq8,yq8,zq2,xq9,yq9,zq2,xm4,ym4,zq3)
+
+Fg(daq)
+#14  
+ FillPolygon(xq9,yq9,zq2,xm5,ym5,zq3,xm4,ym4,zq3)
+
+Fg(daz)
+#15  
+ FillPolygon(xq9,yq9,zq2,xm1,ym1,zq2,xm5,ym5,zq3)
+
+Fg(dad)
+#16  
+ FillPolygon(xm1,ym1,zq2,xm6,ym6,zq3,xm5,ym5,zq3)
+ 
+end
+
+############################################################
+############################################################
+#begin vox draw
+
+procedure maind()
+
+system("poll.exe")
+
+end
+
+##############################################
+
+procedure mainp()
+   
+system("pme.exe")
+
+end
+
+####################################################
+
+procedure tdref()
+
+WOpen("image=rgrid.gif")
+
+end
+
+##################################################
+
+procedure refresh()
+
+WFlush()
+
+end
+
+##################################################
+
+procedure cls()
+
+EraseArea()
+
+end
+
+##################################################
+
+procedure listx()
+
+WindowContents()
+
+end
+
+##################################################
+ 
+procedure iscan()
+
+a := write(readlinea("input.txt",1)|"failed")
+b := write(readlinea("input.txt",2)|"failed")
+c := write(readlinea("input.txt",3)|"failed")
+d := write(readlinea("input.txt",4)|"failed")
+
+inpglcube01((a[14]||a[15]),0,(a[17]||a[18]),1,"green")
+inpglcube01((a[20]||a[21]),0,(a[23]||a[24]),1,"green")
+inpglcube01((a[26]||a[27]),0,(a[29]||a[30]),1,"green")
+inpglcube01((a[32]||a[33]),0,(a[35]||a[36]),1,"green")
+inpglcube01((a[38]||a[39]),0,(a[41]||a[42]),1,"green")
+
+inpglcube01((a[44]||a[45]),0,(a[47]||a[48]),1,"green")
+inpglcube01((a[50]||a[51]),0,(a[53]||a[54]),1,"green")
+inpglcube01((a[56]||a[57]),0,(a[59]||a[60]),1,"green")
+inpglcube01((a[62]||a[63]),0,(a[65]||a[66]),1,"green")
+inpglcube01((a[68]||a[69]),0,(a[71]||a[72]),1,"green")
+
+inpglcube01((a[74]||a[75]),0,(a[77]||a[78]),1,"green")
+inpglcube01((a[80]||a[81]),0,(a[83]||a[84]),1,"green")
+inpglcube01((a[86]||a[87]),0,(a[89]||a[90]),1,"green")
+inpglcube01((a[92]||a[93]),0,(a[95]||a[96]),1,"green")
+inpglcube01((a[98]||a[99]),0,(a[101]||a[102]),1,"green")
+
+inpglcube01((a[104]||a[105]),0,(a[107]||a[108]),1,"green")
+inpglcube01((a[110]||a[111]),0,(a[113]||a[114]),1,"green")
+inpglcube01((a[116]||a[117]),0,(a[119]||a[120]),1,"green")
+inpglcube01((a[122]||a[123]),0,(a[125]||a[126]),1,"green")
+inpglcube01((a[128]||a[129]),0,(a[131]||a[132]),1,"green")
+
+inpglcube01((a[134]||a[135]),0,(a[137]||a[138]),1,"green")
+inpglcube01((a[140]||a[141]),0,(a[143]||a[144]),1,"green")
+inpglcube01((a[146]||a[147]),0,(a[149]||a[150]),1,"green")
+inpglcube01((a[152]||a[153]),0,(a[155]||a[156]),1,"green")
+inpglcube01((a[158]||a[159]),0,(a[161]||a[162]),1,"green")
+
+inpglcube01((a[164]||a[165]),0,(a[167]||a[168]),1,"green")
+inpglcube01((a[170]||a[171]),0,(a[173]||a[174]),1,"green")
+inpglcube01((a[176]||a[177]),0,(a[179]||a[180]),1,"green")
+inpglcube01((a[182]||a[183]),0,(a[185]||a[186]),1,"green")
+inpglcube01((a[188]||a[189]),0,(a[191]||a[192]),1,"green")
+
+###########################################################
+
+inpglcube01((b[14]||b[15]),1,(b[17]||b[18]),1,"blue")
+inpglcube01((b[20]||b[21]),1,(b[23]||b[24]),1,"blue")
+inpglcube01((b[26]||b[27]),1,(b[29]||b[30]),1,"blue")
+inpglcube01((b[32]||b[33]),1,(b[35]||b[36]),1,"blue")
+inpglcube01((b[38]||b[39]),1,(b[41]||b[42]),1,"blue")
+
+inpglcube01((b[44]||b[45]),1,(b[47]||b[48]),1,"blue")
+inpglcube01((b[50]||b[51]),1,(b[53]||b[54]),1,"blue")
+inpglcube01((b[56]||b[57]),1,(b[59]||b[60]),1,"blue")
+inpglcube01((b[62]||b[63]),1,(b[65]||b[66]),1,"blue")
+inpglcube01((b[68]||b[69]),1,(b[71]||b[72]),1,"blue")
+
+inpglcube01((b[74]||b[75]),1,(b[77]||b[78]),1,"blue")
+inpglcube01((b[80]||b[81]),1,(b[83]||b[84]),1,"blue")
+inpglcube01((b[86]||b[87]),1,(b[89]||b[90]),1,"blue")
+inpglcube01((b[92]||b[93]),1,(b[95]||b[96]),1,"blue")
+inpglcube01((b[98]||b[99]),1,(b[101]||b[102]),1,"blue")
+
+inpglcube01((b[104]||b[105]),1,(b[107]||b[108]),1,"blue")
+inpglcube01((b[110]||b[111]),1,(b[113]||b[114]),1,"blue")
+inpglcube01((b[116]||b[117]),1,(b[119]||b[120]),1,"blue")
+inpglcube01((b[122]||b[123]),1,(b[125]||b[126]),1,"blue")
+inpglcube01((b[128]||b[129]),1,(b[131]||b[132]),1,"blue")
+
+inpglcube01((b[134]||b[135]),1,(b[137]||b[138]),1,"blue")
+inpglcube01((b[140]||b[141]),1,(b[143]||b[144]),1,"blue")
+inpglcube01((b[146]||b[147]),1,(b[149]||b[150]),1,"blue")
+inpglcube01((b[152]||b[153]),1,(b[155]||b[156]),1,"blue")
+inpglcube01((b[158]||b[159]),1,(b[161]||b[162]),1,"blue")
+
+inpglcube01((b[164]||b[165]),1,(b[167]||b[168]),1,"blue")
+inpglcube01((b[170]||b[171]),1,(b[173]||b[174]),1,"blue")
+inpglcube01((b[176]||b[177]),1,(b[179]||b[180]),1,"blue")
+inpglcube01((b[182]||b[183]),1,(b[185]||b[186]),1,"blue")
+inpglcube01((b[188]||b[189]),1,(b[191]||b[192]),1,"blue")
+
+############################################################
+
+inpglcube01((c[14]||c[15]),2,(c[17]||c[18]),1,"red")
+inpglcube01((c[20]||c[21]),2,(c[23]||c[24]),1,"red")
+inpglcube01((c[26]||c[27]),2,(c[29]||c[30]),1,"red")
+inpglcube01((c[32]||c[33]),2,(c[35]||c[36]),1,"red")
+inpglcube01((c[38]||c[39]),2,(c[41]||c[42]),1,"red")
+
+inpglcube01((c[44]||c[45]),2,(c[47]||c[48]),1,"red")
+inpglcube01((c[50]||c[51]),2,(c[53]||c[54]),1,"red")
+inpglcube01((c[56]||c[57]),2,(c[59]||c[60]),1,"red")
+inpglcube01((c[62]||c[63]),2,(c[65]||c[66]),1,"red")
+inpglcube01((c[68]||c[69]),2,(c[71]||c[72]),1,"red")
+
+inpglcube01((c[74]||c[75]),2,(c[77]||c[78]),1,"red")
+inpglcube01((c[80]||c[81]),2,(c[83]||c[84]),1,"red")
+inpglcube01((c[86]||c[87]),2,(c[89]||c[90]),1,"red")
+inpglcube01((c[92]||c[93]),2,(c[95]||c[96]),1,"red")
+inpglcube01((c[98]||c[99]),2,(c[101]||c[102]),1,"red")
+
+inpglcube01((c[104]||c[105]),2,(c[107]||c[108]),1,"red")
+inpglcube01((c[110]||c[111]),2,(c[113]||c[114]),1,"red")
+inpglcube01((c[116]||c[117]),2,(c[119]||c[120]),1,"red")
+inpglcube01((c[122]||c[123]),2,(c[125]||c[126]),1,"red")
+inpglcube01((c[128]||c[129]),2,(c[131]||c[132]),1,"red")
+
+inpglcube01((c[134]||c[135]),2,(c[137]||c[138]),1,"red")
+inpglcube01((c[140]||c[141]),2,(c[143]||c[144]),1,"red")
+inpglcube01((c[146]||c[147]),2,(c[149]||c[150]),1,"red")
+inpglcube01((c[152]||c[153]),2,(c[155]||c[156]),1,"red")
+inpglcube01((c[158]||c[159]),2,(c[161]||c[162]),1,"red")
+
+inpglcube01((c[164]||c[165]),2,(c[167]||c[168]),1,"red")
+inpglcube01((c[170]||c[171]),2,(c[173]||c[174]),1,"red")
+inpglcube01((c[176]||c[177]),2,(c[179]||c[180]),1,"red")
+inpglcube01((c[182]||c[183]),2,(c[185]||c[186]),1,"red")
+inpglcube01((c[188]||c[189]),2,(c[191]||c[192]),1,"red")
+return()
+
+end
+
+###############################################
+
+procedure readlinea(f,n)                        
+f := open(\f,"r") | fail                        
+every  i := n & line := |read(f) \ n do i -:= 1 
+close(f)
+if i = 0 then return line
+end
+
+###############################################
+
+procedure texeditsphere01(at)
+
+(ax := at[1],bx := at[2],cx := at[3])
+(dx := at[4],ex := at[5],fx := at[6])
+(gx := at[7],hx := at[8],ix := at[9])
+(jx := at[10],jq := at[11])
+
+x := (ax||bx||cx) 
+y := (dx||ex||fx) 
+z := (gx||hx||ix) 
+s := jx
+t := jq
+
+inpgltexsphere01(x,y,z,s,t)
+
+return()
+
+end
+
+################################################
+
+procedure inpgltexsphere01(x,y,z,r,tex)
+
+WAttrib("texmode=on")
+
+WAttrib("texture="||(tex)||".png")
+
+PushMatrix()
+
+Rotate(-5.0,1.0,0,0)
+   
+DrawSphere(x,y,z,r)
+
+WAttrib("texmode=off") 
+
+return()
+
+end
+
+###################################################
+
+procedure texeditcube01(at)
+
+(ax := at[1],bx := at[2],cx := at[3])
+(dx := at[4],ex := at[5],fx := at[6])
+(gx := at[7],hx := at[8],ix := at[9])
+(jx := at[10],jq := at[11])
+
+x := (ax||bx||cx) 
+y := (dx||ex||fx) 
+z := (gx||hx||ix) 
+s := jx
+t := jq
+
+inpgltexcube01(x,y,z,s,t)
+
+return()
+
+end
+
+################################################
+
+procedure inpgltexcube01(x,y,z,r,tex)
+
+WAttrib("texmode=on")
+
+WAttrib("texture="||(tex)||".png")
+   
+DrawCube(x,y,z,r)
+
+WAttrib("texmode=off") 
+
+return()
+
+end
+
+###################################################
+
+procedure cyltex01(at)
+
+(ax := at[1],bx := at[2],cx := at[3])
+(dx := at[4],ex := at[5],fx := at[6])
+(gx := at[7],hx := at[8],ix := at[9])
+(jz := at[10],jx := at[11],jy := at[12])
+(jq := at[13])
+
+x := (ax||bx||cx) 
+y := (dx||ex||fx) 
+z := (gx||hx||ix)
+p1 := jz 
+s1 := jx
+s2 := jy
+c := jq
+
+inpglcylindertex02(x,y,z,p1,s1,s2,c)
+
+return()
+
+end
+
+######################################################
+
+procedure inpglcylindertex02(ipx,ipy,ipz,ips,ipq,ipa,tex)
+
+WAttrib("texmode=on")
+
+WAttrib("texture="||(tex)||".png")
+
+DrawCylinder(ipx,ipy,ipz,ips,ipq,ipa)
+
+WAttrib("texmode=off") 
+
+return()
+
+end
+
+##################################################
+
+procedure texplane02(at)
+
+(ax := at[1],bx := at[2],cx := at[3])
+(dx := at[4],ex := at[5],fx := at[6])
+(gx := at[7],hx := at[8],ix := at[9])
+
+(aax := at[10],bbx := at[11],ccx := at[12])
+(ddx := at[13],eex := at[14],ffx := at[15])
+(ggx := at[16],hhx := at[17],iix := at[18])
+
+(aaax := at[19],bbbx := at[20],cccx := at[21])
+(dddx := at[22],eeex := at[23],fffx := at[24])
+(gggx := at[25],hhhx := at[26],iiix := at[27])
+
+(aaaax := at[28],bbbbx := at[29],ccccx := at[30])
+(ddddx := at[31],eeeex := at[32],ffffx := at[33])
+(ggggx := at[34],hhhhx := at[35],iiiix := at[36])
+
+(jq := at[37])
+
+px := (ax||bx||cx) 
+py := (dx||ex||fx) 
+pz := (gx||hx||ix)
+
+pxx := (aax||bbx||ccx) 
+pyy := (ddx||eex||ffx) 
+pzz := (ggx||hhx||iix)
+
+pxxx := (aaax||bbbx||cccx) 
+pyyy := (dddx||eeex||fffx) 
+pzzz := (gggx||hhhx||iiix)
+
+pxxxx := (aaaax||bbbbx||ccccx) 
+pyyyy := (ddddx||eeeex||ffffx) 
+pzzzz := (ggggx||hhhhx||iiiix)
+
+c := jq
+
+inptexpln(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz,c)
+
+end
+
+####################################################
+
+procedure
+inptexpln(px,py,pz,pxx,pyy,pzz,pxxx,pyyy,pzzz,pxxxx,pyyyy,pzzzz,tex)
+
+WAttrib("texmode=on")
+
+WAttrib("texture="||(tex)||".png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")
+
+FillPolygon(0+px,1+py,0+pz,1+pxx,1+pyy,0+pzz,1+pxxx,0+pyyy,0+pzzz,0+pxxxx,0+pyyyy,0+pzzzz)
+
+WAttrib("texmode=off") 
+
+return()
+
+end
+
+############################################################
+
+procedure edittexskysphere05()
+
+WAttrib("texmode=on")
+
+WAttrib ("texture=8.png")#change as needed
+
+x := -1
+y := 0
+z := -5
+r := 250
+
+DrawSphere(x,y,z,r)
+
+WAttrib("texmode=off") 
+
+end
+
+##################################################
+
+procedure edittexgroundplane05()
+
+WAttrib("texmode=on")
+
+WAttrib("texture=9.png","texcoord=0.0,1.0,0.0,0.0,1.0,0.0,1.0,1.0")#change as needed
+
+FillPolygon(-129,-.5,-249,129,-.5,-249,129,-.5,100,-129,-.5,100)
+
+WAttrib("texmode=off") 
+
+end
+
+############################################################
+############################################################
+
+procedure rantexsphere01(at)
+
+(ax := at[1],bx := at[2],cx := at[3])
+(dx := at[4],ex := at[5],fx := at[6])
+(gx := at[7],hx := at[8],ix := at[9])
+(s := at[10],t := at[11])
+
+#c := colorTable(jq)
+
+every x := 1 to (ax||bx||cx) do{
+every y := 1 to (dx||ex||fx) do{
+every z := 1 to (gx||hx||ix) do{ 
+
+inpgltexsphere02(?x,?y,?z,?s,t)
+
+}
+}
+}
+
+return()
+
+end
+
+################################################
+
+procedure rantexeditcube01(at)
+
+(ax := at[1],bx := at[2],cx := at[3])
+(dx := at[4],ex := at[5],fx := at[6])
+(gx := at[7],hx := at[8],ix := at[9])
+(s := at[10],t := at[11])
+
+#c := colorTable(jq)
+
+every x := 1 to (ax||bx||cx) do{
+every y := 1 to (dx||ex||fx) do{
+every z := 1 to (gx||hx||ix) do{ 
+
+inpgltexcube01(?x,?y,?z,?s,t)
+
+}
+}
+}
+
+return()
+
+end
+
+###################################################
+
+procedure inpgltexsphere02(x,y,z,r,tex)
+
+WAttrib("texmode=on")
+
+WAttrib("texture="||(tex)||".png")
+
+#PushMatrix()
+
+#Rotate(-5.0,1.0,0,0)
+   
+DrawSphere(x,y,z,r)
+
+WAttrib("texmode=off") 
+
+return()
+
+end
+
+##############################################
+
+
+
+
