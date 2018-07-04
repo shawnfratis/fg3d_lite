@@ -1,0 +1,16 @@
+FG3Dlite
+
+IMPORTANT! Everything for fg3dlite must be in the same folder.
+
+This includes:
+
+fg3d.exe
+
+splane.png
+
+nav.x
+
+doc file
+
+
+The snap function will put fg01.png in this folder. Remember to rename it or it will be overwritten the next time you use snap!

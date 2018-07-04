@@ -1,0 +1,129 @@
+
+FG3Dlite
+
+by Shawn L Fratis 2018 (shawnfratis@gmail.com)
+
+This is a scaled-down version of my 3D program (See below for a list of features coming in the full version).
+
+This program allows you to work with various primitives and arrange them in patterns, arrays and random arrays.
+
+FG3D means Fratis Graphics 3D.
+
+Integrated with Jafar Al-Gharaibeh's Unicon 3D viewer.
+
+Made in Unicon, with Unicon IDE (unicon.sourceforge.net).
+
+###########################################
+
+*IMPORTANT*: To start you must press "activate nav controls" or the program will crash when you try and use navigation controls.
+
+Press "tex plane 1" to get a 3D plane with guides.
+
+Press "clear scrn" to clear everything from screen.
+
+Press "snap" to get an image snapshot saved as fg01.png. (*NOTE*: if you want to save this image you must rename it, otherwise it will be overwritten next time you use snap)
+
+############################################
+
+BASIC INPUT:
+
+All inputs are numeric. To start, try "cube": type in 00100100111, and hit enter. Move the mouse cursor over the main window. This will create a red cube.
+
+To explain what the numbers are doing:
+
+The first 001 is the X value.
+
+The second 001 is the Y value.
+
+The third 001 is the Z value.
+
+The 10th digit (1) sets the size of the cube.
+
+The 11th digit (1) sets the color.
+
+Type in 00200600135. Use the down arrow to move back. You will see a larger orange cube in front of, and above, the red one.
+
+X,Y and Z values are all 3 digit.
+
+Size and color are 1 digit.
+
+Color values are: 
+
+1 = red, 2 = green, 3 = blue, 4 = yellow, 5 = orange, 6 = magenta, 7 = medium grey,  8 = light grey, 9 = dark grey. 
+
+###############################################
+
+NAVIGATION:
+
+Use arrow keys for forward, reverse, right and left movement.
+
+PgUp and PgDn to pan camera up and down.
+
+w and W move the camera right and left.
+
+e and E move the camera up and down.
+
+##############################################
+
+OBJECT INPUTS:
+
+Please note: in some cases arrays of objects might take time to calculate. Please be patient!
+
+Pro tip: You can copy (ctrl-c) and paste (ctrl-v) any of these lines of input values right into the input boxes and then hit enter.
+
+cube and sphere both use the basic input described above.
+
+cylinder input example: 0010010012334. 001001001 are X Y, and Z values. 2 is cylinder height. 33 are top and bottom radius. 4 is color. 
+
+vox array input example: 00101000131. The first 9 values set X,Y and Z, except that this time 010 is entered into Y. This sets an array value, which puts 10 cubes in the Y direction. NOTE: the last 2 values are reversed from basic shape input (10th digit is color, 11th digit is size).
+
+vox spheres input is same as vox array, except spheres instead of cubes. NOTE: the last 2 values are reversed from basic shape input (10th digit is color, 11th digit is size).
+
+vox r array is similar to vox array except that values are set to randomize, creating interesting patterns. Last 2 values (color and size) are same as basic input.
+
+r vox spheres is similar to vox r array except that sphere size is randomized. Last 2 values (color and size) are same as basic input.
+
+vox t array is similar to vox array except with an extra added single digit that sets a trigonemetric value.
+
+vox rad is similar to vox array except is sets spheres into radial/concentric patterns. Last 2 values (color and size) are same as basic input.
+
+poly array is a bit more complex. It's for creating a simple poly plane. A sample entry would look like this: 121213121312131213121312131213127898. There are 36 numbers to enter. The first 2 numbers are the X and Z coordinate of the top left corner of the plane. The next 30 digits are the Y values of each vertex of the plane. The last 4 digits are the color values of various facets. Using this tool you can create simple terrain-like shapes.
+
+See below for input examples.
+
+################################################
+
+Features coming in the full 3D program:
+
+Texture/image mapping, graduated colors, more color options, some animation functionality (image sequences, as well as image sequence viewer), Incremental camera adjustment, draw program integrated (for textures, etc), tesselation control, various visual effects (lightning, etc), lighting adjustments, scripting, particles/points, lo-res terrain generator, DXF importer (limited), more Unicon 2D and 3D functions (see Unicon manual for more info), more funcions from Jafar Al-Gharaibeh's Unicon 3D viewer.
+
+################################################
+
+A few interesting input examples (some of these take a while to generate):
+
+vox rad: 03003000512, 02002000523
+
+cylinder: 0010010017118, 0030010024117, 0050010053423
+
+vox array: 00102001061
+
+vox spheres: 01000102021
+
+vox r array: 03000103051, 00102000117
+
+r vox spheres: 00102000114
+
+################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
