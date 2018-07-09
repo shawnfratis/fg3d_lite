@@ -23,6 +23,8 @@ Press "clear scrn" to clear everything from screen.
 
 Press "snap" to get an image snapshot saved as fg01.png. (*NOTE*: if you want to save this image you must rename it, otherwise it will be overwritten next time you use snap)
 
+Possible bug: "snap" might not work on Windows. A workaround would be to use print screen (PrtScn) and then crop the image in an image editor (GIMP, Photoshop or other). The image window does not resize, so there should not be any degradation using this method. 
+
 ############################################
 
 BASIC INPUT:
